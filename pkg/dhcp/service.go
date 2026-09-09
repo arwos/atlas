@@ -13,8 +13,6 @@ import (
 	"strings"
 	"sync"
 
-	"go.osspkg.com/goppy/v3/plugins/web/jsonrpc"
-
 	"go.arwos.org/atlas/pkg/database"
 )
 
@@ -26,15 +24,13 @@ type Service struct {
 	conn   *net.UDPConn
 }
 
-func NewService(db *database.Service, cfg *ConfigGroup, rpc jsonrpc.Transport) *Service {
-	s := &Service{
+func NewService(db *database.Service, cfg *ConfigGroup) *Service {
+	return &Service{
 		repo: &repository{
 			db: db,
 		},
 		config: &cfg.Config,
 	}
-	rpc.Add(s)
-	return s
 }
 
 func (s *Service) Up(ctx context.Context) error {
@@ -69,6 +65,75 @@ func (s *Service) reload(ctx context.Context) error {
 	// Binding UDP/67 is deliberately delayed until an active interface has a usable IPv4.
 	// The packet engine is independent from the socket and can be exercised without privileges.
 	return nil
+}
+
+// Draft returns the editable DHCP configuration.
+func (s *Service) Draft(ctx context.Context) (Snapshot, error) {
+	return s.repo.snapshot(ctx, draftVersion)
+}
+
+// Active returns the configuration currently used by the DHCP service.
+func (s *Service) Active(ctx context.Context) (Snapshot, error) {
+	return s.repo.snapshot(ctx, activeVersion)
+}
+
+func (s *Service) UpsertSubnet(ctx context.Context, subnet Subnet) error {
+	if err := s.validate(Snapshot{Subnets: []Subnet{subnet}}); err != nil {
+		return err
+	}
+	return s.repo.upsertSubnet(ctx, subnet)
+}
+
+func (s *Service) DeleteSubnet(ctx context.Context, id int64) error {
+	return s.repo.deleteSubnet(ctx, id)
+}
+
+func (s *Service) UpsertReservation(ctx context.Context, reservation Reservation) error {
+	mac, err := normalMAC(reservation.MAC)
+	if err != nil {
+		return err
+	}
+	reservation.MAC = mac
+	return s.repo.upsertReservation(ctx, reservation)
+}
+
+func (s *Service) DeleteReservation(ctx context.Context, id int64) error {
+	return s.repo.deleteReservation(ctx, id)
+}
+
+func (s *Service) UpsertBlock(ctx context.Context, block Block) error {
+	mac, err := normalMAC(block.MAC)
+	if err != nil {
+		return err
+	}
+	block.MAC = mac
+	return s.repo.upsertBlock(ctx, block)
+}
+
+func (s *Service) DeleteBlock(ctx context.Context, id int64) error {
+	return s.repo.deleteBlock(ctx, id)
+}
+
+func (s *Service) Apply(ctx context.Context) error {
+	snapshot, err := s.Draft(ctx)
+	if err != nil {
+		return err
+	}
+	if err = s.validate(snapshot); err != nil {
+		return err
+	}
+	if err = s.repo.replaceActive(ctx); err != nil {
+		return err
+	}
+	return s.reload(ctx)
+}
+
+func (s *Service) Leases(ctx context.Context) ([]Lease, error) {
+	return s.repo.leases(ctx)
+}
+
+func (s *Service) RevokeLease(ctx context.Context, id int64) error {
+	return s.repo.revokeLease(ctx, id)
 }
 
 func (s *Service) validate(snap Snapshot) error {

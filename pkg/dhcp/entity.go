@@ -15,40 +15,40 @@ const (
 )
 
 type Subnet struct {
-	ID              int64    `json:"id"`
-	Interface       string   `json:"interface"`
-	CIDR            string   `json:"cidr"`
-	LeaseSeconds    int64    `json:"lease_seconds"`
-	Router          string   `json:"router,omitempty"`
-	DNSServers      []string `json:"dns_servers,omitempty"`
-	DomainSearch    string   `json:"domain_search,omitempty"`
-	NTPServers      []string `json:"ntp_servers,omitempty"`
-	MTU             int      `json:"mtu,omitempty"`
-	ClasslessRoutes []string `json:"classless_routes,omitempty"`
+	ID              int64
+	Interface       string
+	CIDR            string
+	LeaseSeconds    int64
+	Router          string
+	DNSServers      []string
+	DomainSearch    string
+	NTPServers      []string
+	MTU             int
+	ClasslessRoutes []string
 }
 
 type Reservation struct {
-	ID       int64  `json:"id"`
-	SubnetID int64  `json:"subnet_id"`
-	MAC      string `json:"mac"`
-	IP       string `json:"ip"`
+	ID       int64
+	SubnetID int64
+	MAC      string
+	IP       string
 }
 
 type Block struct {
-	ID  int64  `json:"id"`
-	MAC string `json:"mac"`
+	ID  int64
+	MAC string
 }
 
 type Lease struct {
-	ID        int64     `json:"id"`
-	SubnetID  int64     `json:"subnet_id"`
-	MAC       string    `json:"mac"`
-	IP        string    `json:"ip"`
-	ExpiresAt time.Time `json:"expires_at"`
+	ID        int64
+	SubnetID  int64
+	MAC       string
+	IP        string
+	ExpiresAt time.Time
 }
 
 type Snapshot struct {
-	Subnets      []Subnet      `json:"subnets"`
-	Reservations []Reservation `json:"reservations"`
-	Blocks       []Block       `json:"blocks"`
+	Subnets      []Subnet
+	Reservations []Reservation
+	Blocks       []Block
 }

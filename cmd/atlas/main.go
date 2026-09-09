@@ -11,7 +11,9 @@ import (
 	"go.osspkg.com/goppy/v3/plugins/orm/clients/sqlite"
 	"go.osspkg.com/goppy/v3/plugins/web"
 	"go.osspkg.com/goppy/v3/plugins/web/jsonrpc"
+	"go.osspkg.com/logx"
 
+	"go.arwos.org/atlas/app"
 	"go.arwos.org/atlas/pkg"
 )
 
@@ -23,10 +25,19 @@ func main() {
 	svc.Plugins(
 		orm.WithORM(sqlite.Name),
 		web.WithServer(),
-		jsonrpc.WithTransport(),
+		jsonrpc.WithTransport(
+			jsonrpc.Path("/jsonrpc"),
+			jsonrpc.ErrHandler(func(method string, err error) error {
+				logx.Error("json-rpc error", "method", method, "err", err)
+				return err
+			}),
+		),
 	)
 
-	svc.Plugins(pkg.Plugins)
+	svc.Plugins(
+		app.Plugin,
+		pkg.Plugins,
+	)
 
 	svc.Run()
 }
