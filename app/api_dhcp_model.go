@@ -7,10 +7,12 @@ package app
 
 import "time"
 
-type DHCPDraftGetRequest struct{}
-type DHCPActiveGetRequest struct{}
-type DHCPApplyRequest struct{}
-type DHCPLeaseListRequest struct{}
+type (
+	DHCPDraftGetRequest  struct{}
+	DHCPActiveGetRequest struct{}
+	DHCPApplyRequest     struct{}
+	DHCPLeaseListRequest struct{}
+)
 
 type DHCPSubnetUpsertRequest struct {
 	ID              int64    `json:"id,omitempty"`

@@ -18,6 +18,7 @@ func (a *API) rpcDraft(ctx context.Context, _ web.Ctx, _ json.RawMessage) (any, 
 	snapshot, err := a.dhcp.Draft(ctx)
 	return toDHCPConfigurationResponse(snapshot), err
 }
+
 func (a *API) rpcActive(ctx context.Context, _ web.Ctx, _ json.RawMessage) (any, error) {
 	snapshot, err := a.dhcp.Active(ctx)
 	return toDHCPConfigurationResponse(snapshot), err
@@ -30,6 +31,7 @@ func (a *API) rpcSubnet(ctx context.Context, _ web.Ctx, p json.RawMessage) (any,
 	}
 	return operationResponse(a.dhcp.UpsertSubnet(ctx, toDHCPSubnet(request)))
 }
+
 func (a *API) rpcSubnetDelete(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, error) {
 	var request DHCPSubnetDeleteRequest
 	if err := decode(p, &request); err != nil {
@@ -37,6 +39,7 @@ func (a *API) rpcSubnetDelete(ctx context.Context, _ web.Ctx, p json.RawMessage)
 	}
 	return operationResponse(a.dhcp.DeleteSubnet(ctx, request.ID))
 }
+
 func (a *API) rpcReservation(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, error) {
 	var request DHCPReservationUpsertRequest
 	if err := decode(p, &request); err != nil {
@@ -44,6 +47,7 @@ func (a *API) rpcReservation(ctx context.Context, _ web.Ctx, p json.RawMessage) 
 	}
 	return operationResponse(a.dhcp.UpsertReservation(ctx, toDHCPReservation(request)))
 }
+
 func (a *API) rpcReservationDelete(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, error) {
 	var request DHCPReservationDeleteRequest
 	if err := decode(p, &request); err != nil {
@@ -51,6 +55,7 @@ func (a *API) rpcReservationDelete(ctx context.Context, _ web.Ctx, p json.RawMes
 	}
 	return operationResponse(a.dhcp.DeleteReservation(ctx, request.ID))
 }
+
 func (a *API) rpcBlock(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, error) {
 	var request DHCPBlockUpsertRequest
 	if err := decode(p, &request); err != nil {
@@ -58,6 +63,7 @@ func (a *API) rpcBlock(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, 
 	}
 	return operationResponse(a.dhcp.UpsertBlock(ctx, toDHCPBlock(request)))
 }
+
 func (a *API) rpcBlockDelete(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, error) {
 	var request DHCPBlockDeleteRequest
 	if err := decode(p, &request); err != nil {
@@ -65,13 +71,16 @@ func (a *API) rpcBlockDelete(ctx context.Context, _ web.Ctx, p json.RawMessage) 
 	}
 	return operationResponse(a.dhcp.DeleteBlock(ctx, request.ID))
 }
+
 func (a *API) rpcApply(ctx context.Context, _ web.Ctx, _ json.RawMessage) (any, error) {
 	return operationResponse(a.dhcp.Apply(ctx))
 }
+
 func (a *API) rpcLeases(ctx context.Context, _ web.Ctx, _ json.RawMessage) (any, error) {
 	leases, err := a.dhcp.Leases(ctx)
 	return toDHCPLeaseResponses(leases), err
 }
+
 func (a *API) rpcLeaseRevoke(ctx context.Context, _ web.Ctx, p json.RawMessage) (any, error) {
 	var request DHCPLeaseRevokeRequest
 	if err := decode(p, &request); err != nil {
@@ -86,13 +95,19 @@ func operationResponse(err error) (any, error) {
 	}
 	return OperationResponse{Success: true}, nil
 }
+
 func toDHCPSubnet(v DHCPSubnetUpsertRequest) dhcp.Subnet {
 	return dhcp.Subnet{ID: v.ID, Interface: v.Interface, CIDR: v.CIDR, LeaseSeconds: v.LeaseSeconds, Router: v.Router, DNSServers: v.DNSServers, DomainSearch: v.DomainSearch, NTPServers: v.NTPServers, MTU: v.MTU, ClasslessRoutes: v.ClasslessRoutes}
 }
+
 func toDHCPReservation(v DHCPReservationUpsertRequest) dhcp.Reservation {
 	return dhcp.Reservation{ID: v.ID, SubnetID: v.SubnetID, MAC: v.MAC, IP: v.IP}
 }
-func toDHCPBlock(v DHCPBlockUpsertRequest) dhcp.Block { return dhcp.Block{ID: v.ID, MAC: v.MAC} }
+
+func toDHCPBlock(v DHCPBlockUpsertRequest) dhcp.Block {
+	return dhcp.Block{ID: v.ID, MAC: v.MAC}
+}
+
 func toDHCPConfigurationResponse(v dhcp.Snapshot) DHCPConfigurationResponse {
 	out := DHCPConfigurationResponse{Subnets: make([]DHCPSubnetResponse, 0, len(v.Subnets)), Reservations: make([]DHCPReservationResponse, 0, len(v.Reservations)), Blocks: make([]DHCPBlockResponse, 0, len(v.Blocks))}
 	for _, x := range v.Subnets {
@@ -106,6 +121,7 @@ func toDHCPConfigurationResponse(v dhcp.Snapshot) DHCPConfigurationResponse {
 	}
 	return out
 }
+
 func toDHCPLeaseResponses(v []dhcp.Lease) []DHCPLeaseResponse {
 	out := make([]DHCPLeaseResponse, 0, len(v))
 	for _, x := range v {

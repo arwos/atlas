@@ -28,6 +28,7 @@ func closeRows(rows *sql.Rows) {
 func (r *repository) exec(ctx context.Context, n, q string, a ...any) error {
 	return r.db.Master().CallContext(ctx, n, func(ctx context.Context, db orm.DB) error { _, e := db.ExecContext(ctx, q, a...); return e })
 }
+
 func (r *repository) bootstrap(ctx context.Context, b BootstrapConfig) error {
 	var n int
 	err := r.db.Master().CallContext(ctx, "dhcp.bootstrap", func(ctx context.Context, db orm.DB) error {
@@ -53,6 +54,7 @@ func (r *repository) bootstrap(ctx context.Context, b BootstrapConfig) error {
 		return nil
 	})
 }
+
 func (r *repository) snapshot(ctx context.Context, v string) (out Snapshot, err error) {
 	err = r.db.Master().CallContext(ctx, "dhcp.snapshot", func(ctx context.Context, db orm.DB) error {
 		rows, e := db.QueryContext(ctx, `SELECT id,interface_name,cidr,lease_seconds,router,dns_servers,domain_search,ntp_servers,mtu,classless_routes FROM dhcp_subnets WHERE version=? ORDER BY id`, v)
@@ -111,6 +113,7 @@ func (r *repository) snapshot(ctx context.Context, v string) (out Snapshot, err 
 	})
 	return
 }
+
 func (r *repository) replaceActive(ctx context.Context) error {
 	return r.db.Master().TxContext(ctx, "dhcp.apply", func(ctx context.Context, db orm.DB) error {
 		for _, q := range []string{"DELETE FROM dhcp_reservations WHERE version='active'", "DELETE FROM dhcp_blocks WHERE version='active'", "DELETE FROM dhcp_subnets WHERE version='active'"} {
@@ -128,6 +131,7 @@ func (r *repository) replaceActive(ctx context.Context) error {
 		return e
 	})
 }
+
 func (r *repository) upsertSubnet(ctx context.Context, s Subnet) error {
 	dns, err := json.Marshal(s.DNSServers)
 	if err != nil {
@@ -149,27 +153,33 @@ func (r *repository) upsertSubnet(ctx context.Context, s Subnet) error {
 	}
 	return r.exec(ctx, "dhcp.subnet.update", `UPDATE dhcp_subnets SET interface_name=?,cidr=?,lease_seconds=?,router=?,dns_servers=?,domain_search=?,ntp_servers=?,mtu=?,classless_routes=? WHERE id=? AND version='draft'`, s.Interface, s.CIDR, s.LeaseSeconds, s.Router, string(dns), s.DomainSearch, string(ntp), s.MTU, string(routes), s.ID)
 }
+
 func (r *repository) deleteSubnet(ctx context.Context, id int64) error {
 	return r.exec(ctx, "dhcp.subnet.delete", "DELETE FROM dhcp_subnets WHERE id=? AND version='draft'", id)
 }
+
 func (r *repository) upsertReservation(ctx context.Context, x Reservation) error {
 	if x.ID == 0 {
 		return r.exec(ctx, "dhcp.reservation.create", "INSERT INTO dhcp_reservations(version,subnet_id,mac,ip) VALUES('draft',?,?,?)", x.SubnetID, x.MAC, x.IP)
 	}
 	return r.exec(ctx, "dhcp.reservation.update", "UPDATE dhcp_reservations SET subnet_id=?,mac=?,ip=? WHERE id=? AND version='draft'", x.SubnetID, x.MAC, x.IP, x.ID)
 }
+
 func (r *repository) deleteReservation(ctx context.Context, id int64) error {
 	return r.exec(ctx, "dhcp.reservation.delete", "DELETE FROM dhcp_reservations WHERE id=? AND version='draft'", id)
 }
+
 func (r *repository) upsertBlock(ctx context.Context, x Block) error {
 	if x.ID == 0 {
 		return r.exec(ctx, "dhcp.block.create", "INSERT INTO dhcp_blocks(version,mac) VALUES('draft',?)", x.MAC)
 	}
 	return r.exec(ctx, "dhcp.block.update", "UPDATE dhcp_blocks SET mac=? WHERE id=? AND version='draft'", x.MAC, x.ID)
 }
+
 func (r *repository) deleteBlock(ctx context.Context, id int64) error {
 	return r.exec(ctx, "dhcp.block.delete", "DELETE FROM dhcp_blocks WHERE id=? AND version='draft'", id)
 }
+
 func (r *repository) leases(ctx context.Context) (out []Lease, err error) {
 	err = r.db.Master().CallContext(ctx, "dhcp.leases", func(ctx context.Context, db orm.DB) error {
 		rows, e := db.QueryContext(ctx, "SELECT id,subnet_id,mac,ip,expires_at FROM dhcp_leases ORDER BY expires_at DESC")
@@ -190,6 +200,7 @@ func (r *repository) leases(ctx context.Context) (out []Lease, err error) {
 	})
 	return
 }
+
 func (r *repository) revokeLease(ctx context.Context, id int64) error {
 	return r.exec(ctx, "dhcp.lease.revoke", "DELETE FROM dhcp_leases WHERE id=?", id)
 }

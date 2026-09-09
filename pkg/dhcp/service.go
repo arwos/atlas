@@ -7,6 +7,7 @@ package dhcp
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net"
 	"net/netip"
@@ -144,11 +145,11 @@ func (s *Service) validate(snap Snapshot) error {
 			return fmt.Errorf("dhcp: invalid IPv4 CIDR %q", sub.CIDR)
 		}
 		if sub.Interface == "" || sub.LeaseSeconds <= 0 {
-			return fmt.Errorf("dhcp: interface and positive lease_seconds are required")
+			return errors.New("dhcp: interface and positive lease_seconds are required")
 		}
 		for _, other := range seen {
 			if other.Overlaps(p) {
-				return fmt.Errorf("dhcp: overlapping subnets")
+				return errors.New("dhcp: overlapping subnets")
 			}
 		}
 		seen[sub.CIDR] = p
@@ -166,14 +167,14 @@ func (s *Service) validate(snap Snapshot) error {
 			return err
 		}
 		if macs[m] || ips[r.IP] {
-			return fmt.Errorf("dhcp: duplicate reservation")
+			return errors.New("dhcp: duplicate reservation")
 		}
 		macs[m] = true
 		ips[r.IP] = true
 		p, ok := byID[r.SubnetID]
 		ip, err := netip.ParseAddr(r.IP)
 		if !ok || err != nil || !p.Contains(ip) {
-			return fmt.Errorf("dhcp: reservation IP is outside subnet")
+			return errors.New("dhcp: reservation IP is outside subnet")
 		}
 	}
 	for _, b := range snap.Blocks {
@@ -183,6 +184,7 @@ func (s *Service) validate(snap Snapshot) error {
 	}
 	return nil
 }
+
 func normalMAC(in string) (string, error) {
 	m, e := net.ParseMAC(in)
 	if e != nil || len(m) != 6 {

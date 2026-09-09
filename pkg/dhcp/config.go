@@ -6,6 +6,7 @@
 package dhcp
 
 import (
+	"errors"
 	"fmt"
 	"net/netip"
 	"strings"
@@ -34,13 +35,13 @@ func (c *Config) Default() {
 
 func (c *Config) Validate() error {
 	if strings.TrimSpace(c.Bootstrap.Interface) == "" {
-		return fmt.Errorf("dhcp: bootstrap.interface is required")
+		return errors.New("dhcp: bootstrap.interface is required")
 	}
 	if _, err := netip.ParsePrefix(c.Bootstrap.CIDR); err != nil {
 		return fmt.Errorf("dhcp: invalid bootstrap.cidr: %w", err)
 	}
 	if c.Bootstrap.LeaseSeconds <= 0 {
-		return fmt.Errorf("dhcp: bootstrap.lease_seconds must be positive")
+		return errors.New("dhcp: bootstrap.lease_seconds must be positive")
 	}
 	return nil
 }
