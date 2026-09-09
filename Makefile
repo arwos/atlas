@@ -9,6 +9,8 @@ install:
 
 .PHONY: lint
 lint:
+	go generate -run goppy ./...
+	go generate -run easyjson ./...
 	goppy lint
 
 .PHONY: license

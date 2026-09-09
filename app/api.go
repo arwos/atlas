@@ -11,6 +11,8 @@ import (
 
 	"go.osspkg.com/goppy/v3/plugins/web/jsonrpc"
 
+	"go.arwos.org/atlas/app/transport"
+	contract "go.arwos.org/atlas/app/types"
 	"go.arwos.org/atlas/pkg/dhcp"
 )
 
@@ -18,19 +20,26 @@ import (
 type API struct {
 	rpc  jsonrpc.Transport
 	dhcp *dhcp.Service
+	apis []jsonrpc.TApi
 }
 
 // NewAPI constructs the JSON-RPC API adapter.
 func NewAPI(rpc jsonrpc.Transport, dhcp *dhcp.Service) *API {
-	return &API{
+	api := &API{
 		rpc:  rpc,
 		dhcp: dhcp,
 	}
+	api.apis = []jsonrpc.TApi{
+		transport.NewJSONRPCDHCPTransport(api, []string{"main"}),
+	}
+	return api
 }
 
 // Up registers the API with the JSON-RPC transport.
 func (a *API) Up(ctx context.Context) error {
-	a.rpc.Add(a)
+	for _, api := range a.apis {
+		a.rpc.Add(api)
+	}
 
 	return nil
 }
@@ -40,24 +49,4 @@ func (a *API) Down() error {
 	return nil
 }
 
-// RouteTags returns the transport route tags served by the API.
-func (a *API) RouteTags() []string {
-	return []string{"main"}
-}
-
-// JSONRPCApiHandlers returns the JSON-RPC method handlers.
-func (a *API) JSONRPCApiHandlers() map[string]jsonrpc.THandleFunc {
-	return map[string]jsonrpc.THandleFunc{
-		"dhcp.draft.get":          a.rpcDraft,
-		"dhcp.active.get":         a.rpcActive,
-		"dhcp.subnet.upsert":      a.rpcSubnet,
-		"dhcp.subnet.delete":      a.rpcSubnetDelete,
-		"dhcp.reservation.upsert": a.rpcReservation,
-		"dhcp.reservation.delete": a.rpcReservationDelete,
-		"dhcp.block.upsert":       a.rpcBlock,
-		"dhcp.block.delete":       a.rpcBlockDelete,
-		"dhcp.apply":              a.rpcApply,
-		"dhcp.lease.list":         a.rpcLeases,
-		"dhcp.lease.revoke":       a.rpcLeaseRevoke,
-	}
-}
+var _ contract.DHCP = (*API)(nil)

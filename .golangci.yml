@@ -250,5 +250,4 @@ linters:
     - decorder
     - nonamedreturns
     - inamedparam
-    - interfacebloat
     - testpackage

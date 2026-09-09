@@ -3,6 +3,7 @@ module go.arwos.org/atlas
 go 1.26.5
 
 require (
+	github.com/mailru/easyjson v0.9.2
 	go.osspkg.com/goppy/v3 v3.2.3
 	go.osspkg.com/logx v0.6.1
 )
@@ -11,7 +12,6 @@ require (
 	github.com/BurntSushi/toml v1.6.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
-	github.com/mailru/easyjson v0.9.2 // indirect
 	github.com/mattn/go-sqlite3 v1.14.47 // indirect
 	github.com/quic-go/quic-go v0.59.1 // indirect
 	go.osspkg.com/algorithms v1.7.1 // indirect

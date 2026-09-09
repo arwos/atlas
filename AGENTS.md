@@ -8,18 +8,24 @@
   доменную логику в `cmd/atlas/main.go`.
 - Размещай transport-слой и внешние API в `app`. `app.API` — единственный адаптер
   JSON-RPC; регистрируй transport через него, а не через доменные сервисы.
+- Для JSON-RPC используй генератор Goppy: контракт размещай в `app/types`,
+  директивы — в `app/types/tb.go`, а сгенерированный код — в `app/transport`.
+  Не редактируй `app/transport/jsonrpc_server_*.go` вручную; после изменения
+  контракта запускай `go generate ./...`.
 - Считай `atlas-runner` независимым будущим сервисом. Не добавляй в него логику
   `atlas` без явного требования.
 - Не создавай и не упоминай UI в `web`: такого каталога в проекте сейчас нет.
 
 ## DHCP
 
-- Поддерживай разделение DHCP-кода: JSON-RPC handlers — в
-  `app/api_dhcp_handler.go`, внешние request/response DTO — в
-  `app/api_dhcp_model.go`, валидация и lifecycle — в `pkg/dhcp/service.go`,
+- Поддерживай разделение DHCP-кода: JSON-RPC-контракт и внешние DTO — в
+  `app/types/dhcp.go`, реализация transport-контракта — в
+  `app/api_dhcp_service.go`, сгенерированные handlers и модели — в
+  `app/transport`, валидация и lifecycle — в `pkg/dhcp/service.go`,
   конфигурация — в `config.go`, SQL — в `repository.go`.
 - Не импортируй Web или JSON-RPC в `pkg/dhcp`. Предоставляй нужные API методы
-  публичными context-aware методами `dhcp.Service`; handlers вызывают только их.
+  публичными context-aware методами `dhcp.Service`; реализация контракта в `app`
+  вызывает только их.
 - Храни модели БД и домена в `pkg/dhcp/entity.go` без JSON-тегов. Не передавай их
   напрямую через транспорт: преобразуй в DTO и обратно внутри `app`.
 - Изменяй конфигурацию DHCP только в draft. Активной она становится исключительно
@@ -55,7 +61,7 @@
   уязвимостей заблокирован, укажи это в результате проверки.
 - Никогда не объявляй структуру внутри функции, включая `var x struct { ... }`.
   Выноси доменные и БД-модели в `entity.go` соответствующего плагина, а внешние
-  API-модели — в `app/api_<domain>_model.go`.
+  API-модели — в `app/types/<domain>.go`.
 - Не игнорируй ошибки через `_ =`: возвращай их вызывающему коду либо логируй через
   `go.osspkg.com/logx`, если безопасно продолжить работу.
 - Перед завершением изменений запускай `make lint`, `go test ./...` и
