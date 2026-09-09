@@ -244,7 +244,6 @@ linters:
     - errchkjson
     - tagalign
     - usestdlibvars
-    - depguard
     - nestif
     - mirror
     - whitespace

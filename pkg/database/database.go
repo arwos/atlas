@@ -3,6 +3,7 @@
  *  Use of this source code is governed by a BSD 3-Clause license that can be found in the LICENSE file.
  */
 
+// Package database provides Atlas database access.
 package database
 
 import (
@@ -14,20 +15,24 @@ const (
 	tagSlave  = "slave"
 )
 
+// Service provides tagged database statements.
 type Service struct {
 	db orm.ORM
 }
 
+// NewService constructs a database service.
 func NewService(db orm.ORM) *Service {
 	return &Service{
 		db: db,
 	}
 }
 
+// Master returns the primary database statement.
 func (s *Service) Master() orm.Stmt {
 	return s.db.Tag(tagMaster)
 }
 
+// Slave returns the replica database statement.
 func (s *Service) Slave() orm.Stmt {
 	return s.db.Tag(tagSlave)
 }

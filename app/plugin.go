@@ -7,6 +7,7 @@ package app
 
 import "go.osspkg.com/goppy/v3/plugin"
 
+// Plugin registers the application API adapter.
 var Plugin = plugin.Kind{
 	Inject: NewAPI,
 }

@@ -55,63 +55,93 @@ func (r *repository) bootstrap(ctx context.Context, b BootstrapConfig) error {
 	})
 }
 
-func (r *repository) snapshot(ctx context.Context, v string) (out Snapshot, err error) {
-	err = r.db.Master().CallContext(ctx, "dhcp.snapshot", func(ctx context.Context, db orm.DB) error {
-		rows, e := db.QueryContext(ctx, `SELECT id,interface_name,cidr,lease_seconds,router,dns_servers,domain_search,ntp_servers,mtu,classless_routes FROM dhcp_subnets WHERE version=? ORDER BY id`, v)
-		if e != nil {
-			return e
+func (r *repository) snapshot(ctx context.Context, version string) (Snapshot, error) {
+	var out Snapshot
+	err := r.db.Master().CallContext(ctx, "dhcp.snapshot", func(ctx context.Context, db orm.DB) error {
+		var err error
+		if out.Subnets, err = snapshotSubnets(ctx, db, version); err != nil {
+			return err
 		}
-		defer closeRows(rows)
-		for rows.Next() {
-			var s Subnet
-			var dns, ntp, routes string
-			if e = rows.Scan(&s.ID, &s.Interface, &s.CIDR, &s.LeaseSeconds, &s.Router, &dns, &s.DomainSearch, &ntp, &s.MTU, &routes); e != nil {
-				return e
-			}
-			if e = json.Unmarshal([]byte(dns), &s.DNSServers); e != nil {
-				logx.Error("DHCP repository", "do", "decode dns servers", "err", e, "subnet_id", s.ID)
-				return e
-			}
-			if e = json.Unmarshal([]byte(ntp), &s.NTPServers); e != nil {
-				logx.Error("DHCP repository", "do", "decode ntp servers", "err", e, "subnet_id", s.ID)
-				return e
-			}
-			if e = json.Unmarshal([]byte(routes), &s.ClasslessRoutes); e != nil {
-				logx.Error("DHCP repository", "do", "decode classless routes", "err", e, "subnet_id", s.ID)
-				return e
-			}
-			out.Subnets = append(out.Subnets, s)
+		if out.Reservations, err = snapshotReservations(ctx, db, version); err != nil {
+			return err
 		}
-		if e = rows.Err(); e != nil {
-			return e
-		}
-		rows, e = db.QueryContext(ctx, "SELECT id,subnet_id,mac,ip FROM dhcp_reservations WHERE version=?", v)
-		if e != nil {
-			return e
-		}
-		defer closeRows(rows)
-		for rows.Next() {
-			var x Reservation
-			if e = rows.Scan(&x.ID, &x.SubnetID, &x.MAC, &x.IP); e != nil {
-				return e
-			}
-			out.Reservations = append(out.Reservations, x)
-		}
-		rows, e = db.QueryContext(ctx, "SELECT id,mac FROM dhcp_blocks WHERE version=?", v)
-		if e != nil {
-			return e
-		}
-		defer closeRows(rows)
-		for rows.Next() {
-			var x Block
-			if e = rows.Scan(&x.ID, &x.MAC); e != nil {
-				return e
-			}
-			out.Blocks = append(out.Blocks, x)
-		}
-		return rows.Err()
+		out.Blocks, err = snapshotBlocks(ctx, db, version)
+		return err
 	})
-	return
+	return out, err
+}
+
+func snapshotSubnets(ctx context.Context, db orm.DB, version string) ([]Subnet, error) {
+	rows, err := db.QueryContext(ctx, `SELECT id,interface_name,cidr,lease_seconds,router,dns_servers,domain_search,ntp_servers,mtu,classless_routes FROM dhcp_subnets WHERE version=? ORDER BY id`, version)
+	if err != nil {
+		return nil, err
+	}
+	defer closeRows(rows)
+	var subnets []Subnet
+	for rows.Next() {
+		var subnet Subnet
+		var dns, ntp, routes string
+		if err = rows.Scan(&subnet.ID, &subnet.Interface, &subnet.CIDR, &subnet.LeaseSeconds, &subnet.Router, &dns, &subnet.DomainSearch, &ntp, &subnet.MTU, &routes); err != nil {
+			return nil, err
+		}
+		if err = decodeSubnetLists(subnet.ID, dns, ntp, routes, &subnet); err != nil {
+			return nil, err
+		}
+		subnets = append(subnets, subnet)
+	}
+	return subnets, rows.Err()
+}
+
+func decodeSubnetLists(id int64, dns, ntp, routes string, subnet *Subnet) error {
+	if err := decodeJSONList(id, "dns servers", dns, &subnet.DNSServers); err != nil {
+		return err
+	}
+	if err := decodeJSONList(id, "ntp servers", ntp, &subnet.NTPServers); err != nil {
+		return err
+	}
+	return decodeJSONList(id, "classless routes", routes, &subnet.ClasslessRoutes)
+}
+
+func decodeJSONList(id int64, name, data string, out any) error {
+	if err := json.Unmarshal([]byte(data), out); err != nil {
+		logx.Error("DHCP repository", "do", "decode "+name, "err", err, "subnet_id", id)
+		return err
+	}
+	return nil
+}
+
+func snapshotReservations(ctx context.Context, db orm.DB, version string) ([]Reservation, error) {
+	rows, err := db.QueryContext(ctx, "SELECT id,subnet_id,mac,ip FROM dhcp_reservations WHERE version=?", version)
+	if err != nil {
+		return nil, err
+	}
+	defer closeRows(rows)
+	var reservations []Reservation
+	for rows.Next() {
+		var reservation Reservation
+		if err = rows.Scan(&reservation.ID, &reservation.SubnetID, &reservation.MAC, &reservation.IP); err != nil {
+			return nil, err
+		}
+		reservations = append(reservations, reservation)
+	}
+	return reservations, rows.Err()
+}
+
+func snapshotBlocks(ctx context.Context, db orm.DB, version string) ([]Block, error) {
+	rows, err := db.QueryContext(ctx, "SELECT id,mac FROM dhcp_blocks WHERE version=?", version)
+	if err != nil {
+		return nil, err
+	}
+	defer closeRows(rows)
+	var blocks []Block
+	for rows.Next() {
+		var block Block
+		if err = rows.Scan(&block.ID, &block.MAC); err != nil {
+			return nil, err
+		}
+		blocks = append(blocks, block)
+	}
+	return blocks, rows.Err()
 }
 
 func (r *repository) replaceActive(ctx context.Context) error {
@@ -180,8 +210,9 @@ func (r *repository) deleteBlock(ctx context.Context, id int64) error {
 	return r.exec(ctx, "dhcp.block.delete", "DELETE FROM dhcp_blocks WHERE id=? AND version='draft'", id)
 }
 
-func (r *repository) leases(ctx context.Context) (out []Lease, err error) {
-	err = r.db.Master().CallContext(ctx, "dhcp.leases", func(ctx context.Context, db orm.DB) error {
+func (r *repository) leases(ctx context.Context) ([]Lease, error) {
+	var leases []Lease
+	err := r.db.Master().CallContext(ctx, "dhcp.leases", func(ctx context.Context, db orm.DB) error {
 		rows, e := db.QueryContext(ctx, "SELECT id,subnet_id,mac,ip,expires_at FROM dhcp_leases ORDER BY expires_at DESC")
 		if e != nil {
 			return e
@@ -194,11 +225,11 @@ func (r *repository) leases(ctx context.Context) (out []Lease, err error) {
 				return e
 			}
 			l.ExpiresAt = time.Unix(u, 0)
-			out = append(out, l)
+			leases = append(leases, l)
 		}
 		return rows.Err()
 	})
-	return
+	return leases, err
 }
 
 func (r *repository) revokeLease(ctx context.Context, id int64) error {

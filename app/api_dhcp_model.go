@@ -8,12 +8,17 @@ package app
 import "time"
 
 type (
-	DHCPDraftGetRequest  struct{}
+	// DHCPDraftGetRequest requests the editable DHCP configuration.
+	DHCPDraftGetRequest struct{}
+	// DHCPActiveGetRequest requests the active DHCP configuration.
 	DHCPActiveGetRequest struct{}
-	DHCPApplyRequest     struct{}
+	// DHCPApplyRequest applies the editable DHCP configuration.
+	DHCPApplyRequest struct{}
+	// DHCPLeaseListRequest requests DHCP leases.
 	DHCPLeaseListRequest struct{}
 )
 
+// DHCPSubnetUpsertRequest creates or updates a DHCP subnet.
 type DHCPSubnetUpsertRequest struct {
 	ID              int64    `json:"id,omitempty"`
 	Interface       string   `json:"interface"`
@@ -27,32 +32,46 @@ type DHCPSubnetUpsertRequest struct {
 	ClasslessRoutes []string `json:"classless_routes,omitempty"`
 }
 
+// DHCPSubnetDeleteRequest deletes a DHCP subnet.
 type DHCPSubnetDeleteRequest struct {
 	ID int64 `json:"id"`
 }
+
+// DHCPReservationUpsertRequest creates or updates a DHCP reservation.
 type DHCPReservationUpsertRequest struct {
 	ID       int64  `json:"id,omitempty"`
 	SubnetID int64  `json:"subnet_id"`
 	MAC      string `json:"mac"`
 	IP       string `json:"ip"`
 }
+
+// DHCPReservationDeleteRequest deletes a DHCP reservation.
 type DHCPReservationDeleteRequest struct {
 	ID int64 `json:"id"`
 }
+
+// DHCPBlockUpsertRequest creates or updates a DHCP block.
 type DHCPBlockUpsertRequest struct {
 	ID  int64  `json:"id,omitempty"`
 	MAC string `json:"mac"`
 }
+
+// DHCPBlockDeleteRequest deletes a DHCP block.
 type DHCPBlockDeleteRequest struct {
 	ID int64 `json:"id"`
 }
+
+// DHCPLeaseRevokeRequest revokes a DHCP lease.
 type DHCPLeaseRevokeRequest struct {
 	ID int64 `json:"id"`
 }
 
+// OperationResponse reports whether a requested operation succeeded.
 type OperationResponse struct {
 	Success bool `json:"success"`
 }
+
+// DHCPSubnetResponse represents a DHCP subnet over JSON-RPC.
 type DHCPSubnetResponse struct {
 	ID              int64    `json:"id"`
 	Interface       string   `json:"interface"`
@@ -65,16 +84,22 @@ type DHCPSubnetResponse struct {
 	MTU             int      `json:"mtu,omitempty"`
 	ClasslessRoutes []string `json:"classless_routes,omitempty"`
 }
+
+// DHCPReservationResponse represents a DHCP reservation over JSON-RPC.
 type DHCPReservationResponse struct {
 	ID       int64  `json:"id"`
 	SubnetID int64  `json:"subnet_id"`
 	MAC      string `json:"mac"`
 	IP       string `json:"ip"`
 }
+
+// DHCPBlockResponse represents a DHCP block over JSON-RPC.
 type DHCPBlockResponse struct {
 	ID  int64  `json:"id"`
 	MAC string `json:"mac"`
 }
+
+// DHCPLeaseResponse represents a DHCP lease over JSON-RPC.
 type DHCPLeaseResponse struct {
 	ID        int64     `json:"id"`
 	SubnetID  int64     `json:"subnet_id"`
@@ -82,6 +107,8 @@ type DHCPLeaseResponse struct {
 	IP        string    `json:"ip"`
 	ExpiresAt time.Time `json:"expires_at"`
 }
+
+// DHCPConfigurationResponse represents a complete DHCP configuration over JSON-RPC.
 type DHCPConfigurationResponse struct {
 	Subnets      []DHCPSubnetResponse      `json:"subnets"`
 	Reservations []DHCPReservationResponse `json:"reservations"`

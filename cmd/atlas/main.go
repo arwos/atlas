@@ -3,6 +3,7 @@
  *  Use of this source code is governed by a BSD 3-Clause license that can be found in the LICENSE file.
  */
 
+// Command atlas runs the Atlas service.
 package main
 
 import (
@@ -17,6 +18,7 @@ import (
 	"go.arwos.org/atlas/pkg"
 )
 
+// Version is set at build time.
 var Version = "v0.0.0-dev"
 
 func main() {

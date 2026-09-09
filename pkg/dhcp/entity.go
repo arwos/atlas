@@ -14,6 +14,7 @@ const (
 	activeVersion = "active"
 )
 
+// Subnet is a DHCP subnet configuration.
 type Subnet struct {
 	ID              int64
 	Interface       string
@@ -27,6 +28,7 @@ type Subnet struct {
 	ClasslessRoutes []string
 }
 
+// Reservation assigns an address to a hardware address.
 type Reservation struct {
 	ID       int64
 	SubnetID int64
@@ -34,11 +36,13 @@ type Reservation struct {
 	IP       string
 }
 
+// Block denies DHCP service to a hardware address.
 type Block struct {
 	ID  int64
 	MAC string
 }
 
+// Lease is an active DHCP address assignment.
 type Lease struct {
 	ID        int64
 	SubnetID  int64
@@ -47,6 +51,7 @@ type Lease struct {
 	ExpiresAt time.Time
 }
 
+// Snapshot is a complete DHCP configuration revision.
 type Snapshot struct {
 	Subnets      []Subnet
 	Reservations []Reservation

@@ -3,6 +3,7 @@
  *  Use of this source code is governed by a BSD 3-Clause license that can be found in the LICENSE file.
  */
 
+// Package pkg registers Atlas domain plugins.
 package pkg
 
 import (
@@ -13,6 +14,7 @@ import (
 	"go.arwos.org/atlas/pkg/dhcp"
 )
 
+// Plugins registers the Atlas domain services and configuration.
 var Plugins = plugin.Inject(
 	database.NewService,
 	orm.WithMigration(database.Migrations()),

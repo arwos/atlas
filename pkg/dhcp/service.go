@@ -17,6 +17,7 @@ import (
 	"go.arwos.org/atlas/pkg/database"
 )
 
+// Service manages DHCP configuration and its active lifecycle.
 type Service struct {
 	repo   *repository
 	config *Config
@@ -25,6 +26,7 @@ type Service struct {
 	conn   *net.UDPConn
 }
 
+// NewService constructs a DHCP service.
 func NewService(db *database.Service, cfg *ConfigGroup) *Service {
 	return &Service{
 		repo: &repository{
@@ -34,6 +36,7 @@ func NewService(db *database.Service, cfg *ConfigGroup) *Service {
 	}
 }
 
+// Up initializes DHCP state from the active configuration.
 func (s *Service) Up(ctx context.Context) error {
 	if err := s.repo.bootstrap(ctx, s.config.Bootstrap); err != nil {
 		return err
@@ -41,6 +44,7 @@ func (s *Service) Up(ctx context.Context) error {
 	return s.reload(ctx)
 }
 
+// Down closes DHCP resources.
 func (s *Service) Down() error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -78,6 +82,7 @@ func (s *Service) Active(ctx context.Context) (Snapshot, error) {
 	return s.repo.snapshot(ctx, activeVersion)
 }
 
+// UpsertSubnet creates or updates a draft subnet.
 func (s *Service) UpsertSubnet(ctx context.Context, subnet Subnet) error {
 	if err := s.validate(Snapshot{Subnets: []Subnet{subnet}}); err != nil {
 		return err
@@ -85,10 +90,12 @@ func (s *Service) UpsertSubnet(ctx context.Context, subnet Subnet) error {
 	return s.repo.upsertSubnet(ctx, subnet)
 }
 
+// DeleteSubnet deletes a draft subnet.
 func (s *Service) DeleteSubnet(ctx context.Context, id int64) error {
 	return s.repo.deleteSubnet(ctx, id)
 }
 
+// UpsertReservation creates or updates a draft reservation.
 func (s *Service) UpsertReservation(ctx context.Context, reservation Reservation) error {
 	mac, err := normalMAC(reservation.MAC)
 	if err != nil {
@@ -98,10 +105,12 @@ func (s *Service) UpsertReservation(ctx context.Context, reservation Reservation
 	return s.repo.upsertReservation(ctx, reservation)
 }
 
+// DeleteReservation deletes a draft reservation.
 func (s *Service) DeleteReservation(ctx context.Context, id int64) error {
 	return s.repo.deleteReservation(ctx, id)
 }
 
+// UpsertBlock creates or updates a draft block.
 func (s *Service) UpsertBlock(ctx context.Context, block Block) error {
 	mac, err := normalMAC(block.MAC)
 	if err != nil {
@@ -111,10 +120,12 @@ func (s *Service) UpsertBlock(ctx context.Context, block Block) error {
 	return s.repo.upsertBlock(ctx, block)
 }
 
+// DeleteBlock deletes a draft block.
 func (s *Service) DeleteBlock(ctx context.Context, id int64) error {
 	return s.repo.deleteBlock(ctx, id)
 }
 
+// Apply validates and activates the draft configuration.
 func (s *Service) Apply(ctx context.Context) error {
 	snapshot, err := s.Draft(ctx)
 	if err != nil {
@@ -129,39 +140,53 @@ func (s *Service) Apply(ctx context.Context) error {
 	return s.reload(ctx)
 }
 
+// Leases returns active DHCP leases.
 func (s *Service) Leases(ctx context.Context) ([]Lease, error) {
 	return s.repo.leases(ctx)
 }
 
+// RevokeLease removes a DHCP lease.
 func (s *Service) RevokeLease(ctx context.Context, id int64) error {
 	return s.repo.revokeLease(ctx, id)
 }
 
 func (s *Service) validate(snap Snapshot) error {
+	byID, err := validateSubnets(snap.Subnets)
+	if err != nil {
+		return err
+	}
+	if err = validateReservations(snap.Reservations, byID); err != nil {
+		return err
+	}
+	return validateBlocks(snap.Blocks)
+}
+
+func validateSubnets(subnets []Subnet) (map[int64]netip.Prefix, error) {
 	seen := map[string]netip.Prefix{}
-	for _, sub := range snap.Subnets {
+	byID := make(map[int64]netip.Prefix, len(subnets))
+	for _, sub := range subnets {
 		p, err := netip.ParsePrefix(sub.CIDR)
 		if err != nil || !p.Addr().Is4() {
-			return fmt.Errorf("dhcp: invalid IPv4 CIDR %q", sub.CIDR)
+			return nil, fmt.Errorf("dhcp: invalid IPv4 CIDR %q", sub.CIDR)
 		}
 		if sub.Interface == "" || sub.LeaseSeconds <= 0 {
-			return errors.New("dhcp: interface and positive lease_seconds are required")
+			return nil, errors.New("dhcp: interface and positive lease_seconds are required")
 		}
 		for _, other := range seen {
 			if other.Overlaps(p) {
-				return errors.New("dhcp: overlapping subnets")
+				return nil, errors.New("dhcp: overlapping subnets")
 			}
 		}
 		seen[sub.CIDR] = p
-	}
-	byID := map[int64]netip.Prefix{}
-	for _, sub := range snap.Subnets {
-		p, _ := netip.ParsePrefix(sub.CIDR)
 		byID[sub.ID] = p
 	}
+	return byID, nil
+}
+
+func validateReservations(reservations []Reservation, byID map[int64]netip.Prefix) error {
 	macs := map[string]bool{}
 	ips := map[string]bool{}
-	for _, r := range snap.Reservations {
+	for _, r := range reservations {
 		m, err := normalMAC(r.MAC)
 		if err != nil {
 			return err
@@ -177,7 +202,11 @@ func (s *Service) validate(snap Snapshot) error {
 			return errors.New("dhcp: reservation IP is outside subnet")
 		}
 	}
-	for _, b := range snap.Blocks {
+	return nil
+}
+
+func validateBlocks(blocks []Block) error {
+	for _, b := range blocks {
 		if _, err := normalMAC(b.MAC); err != nil {
 			return err
 		}
