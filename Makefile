@@ -29,3 +29,5 @@ pre-commit: install license lint tests build
 .PHONY: ci
 ci: pre-commit
 
+local-run:
+	go run -race cmd/atlas/main.go --config=config/config.dev.yaml --config-recovery

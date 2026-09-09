@@ -1,0 +1,13 @@
+log:
+    level: 4
+    file_path: /dev/stdout
+    format: string
+
+sqlite:
+    - tags: master,slave
+      file: ./.datasource/sqlite.db
+      cache: private
+      mode: rwc
+      journal: WAL
+      locking_mode: NORMAL
+      other_params: auto_vacuum=incremental&_busy_timeout=10000
