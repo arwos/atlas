@@ -1,6 +1,7 @@
 package main
 
 import (
+	"go.arwos.org/atlas/pkg"
 	"go.osspkg.com/goppy/v3"
 	"go.osspkg.com/goppy/v3/plugins/orm"
 	"go.osspkg.com/goppy/v3/plugins/orm/clients/sqlite"
@@ -14,6 +15,8 @@ func main() {
 	svc.Plugins(
 		orm.WithORM(sqlite.Name),
 	)
+
+	svc.Plugins(pkg.Plugins)
 
 	svc.Run()
 }
