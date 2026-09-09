@@ -1,0 +1,19 @@
+[Unit]
+Description=atlas-runner
+Documentation=https://atlas.arwos.org/
+After=network.target
+
+[Service]
+Type=simple
+
+User=atlas-runner
+Group=atlas-runner
+
+Restart=on-failure
+RestartSec=30s
+ExecStart=/usr/bin/atlas-runner --config=/etc/atlas-runner/config.yaml
+KillMode=process
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=default.target

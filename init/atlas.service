@@ -1,0 +1,19 @@
+[Unit]
+Description=atlas
+Documentation=https://atlas.arwos.org/
+After=network.target
+
+[Service]
+Type=simple
+
+User=atlas
+Group=atlas
+
+Restart=on-failure
+RestartSec=30s
+ExecStart=/usr/bin/atlas --config=/etc/atlas/config.yaml
+KillMode=process
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=default.target
