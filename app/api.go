@@ -14,23 +14,27 @@ import (
 	"go.arwos.org/atlas/app/transport"
 	contract "go.arwos.org/atlas/app/types"
 	"go.arwos.org/atlas/pkg/dhcp"
+	"go.arwos.org/atlas/pkg/dns"
 )
 
 // API adapts domain services to the JSON-RPC transport.
 type API struct {
 	rpc  jsonrpc.Transport
 	dhcp *dhcp.Service
+	dns  *dns.Service
 	apis []jsonrpc.TApi
 }
 
 // NewAPI constructs the JSON-RPC API adapter.
-func NewAPI(rpc jsonrpc.Transport, dhcp *dhcp.Service) *API {
+func NewAPI(rpc jsonrpc.Transport, dhcp *dhcp.Service, dns *dns.Service) *API {
 	api := &API{
 		rpc:  rpc,
 		dhcp: dhcp,
+		dns:  dns,
 	}
 	api.apis = []jsonrpc.TApi{
 		transport.NewJSONRPCDHCPTransport(api, []string{"main"}),
+		transport.NewJSONRPCDNSTransport(api, []string{"main"}),
 	}
 	return api
 }
@@ -49,4 +53,7 @@ func (a *API) Down() error {
 	return nil
 }
 
-var _ contract.DHCP = (*API)(nil)
+var (
+	_ contract.DHCP = (*API)(nil)
+	_ contract.DNS  = (*API)(nil)
+)

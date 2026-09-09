@@ -105,3 +105,107 @@ type jsonrpcDHCPLeaseListModelRequest struct{}
 type jsonrpcDHCPLeaseListModelResponse struct {
 	Leases []contract.DHCPLeaseResponse `json:"leases,omitempty"`
 }
+
+//easyjson:json
+type jsonrpcDNSDraftGetDNSModelRequest struct{}
+
+//easyjson:json
+type jsonrpcDNSDraftGetDNSModelResponse struct {
+	Configuration contract.DNSConfigurationResponse `json:"configuration"`
+}
+
+//easyjson:json
+type jsonrpcDNSActiveGetDNSModelRequest struct{}
+
+//easyjson:json
+type jsonrpcDNSActiveGetDNSModelResponse struct {
+	Configuration contract.DNSConfigurationResponse `json:"configuration"`
+}
+
+//easyjson:json
+type jsonrpcDNSZoneUpsertModelRequest struct {
+	Zone contract.DNSZoneUpsertRequest `json:"zone"`
+}
+
+//easyjson:json
+type jsonrpcDNSZoneUpsertModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSZoneDeleteModelRequest struct {
+	Id int64 `json:"id"`
+}
+
+//easyjson:json
+type jsonrpcDNSZoneDeleteModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSRecordUpsertModelRequest struct {
+	Record contract.DNSRecordUpsertRequest `json:"record"`
+}
+
+//easyjson:json
+type jsonrpcDNSRecordUpsertModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSRecordDeleteModelRequest struct {
+	Id int64 `json:"id"`
+}
+
+//easyjson:json
+type jsonrpcDNSRecordDeleteModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSForwarderUpsertModelRequest struct {
+	Forwarder contract.DNSForwarderUpsertRequest `json:"forwarder"`
+}
+
+//easyjson:json
+type jsonrpcDNSForwarderUpsertModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSForwarderDeleteModelRequest struct {
+	Id int64 `json:"id"`
+}
+
+//easyjson:json
+type jsonrpcDNSForwarderDeleteModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSDNSBlockUpsertModelRequest struct {
+	Block contract.DNSBlockUpsertRequest `json:"block"`
+}
+
+//easyjson:json
+type jsonrpcDNSDNSBlockUpsertModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSDNSBlockDeleteModelRequest struct {
+	Id int64 `json:"id"`
+}
+
+//easyjson:json
+type jsonrpcDNSDNSBlockDeleteModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}
+
+//easyjson:json
+type jsonrpcDNSApplyDNSModelRequest struct{}
+
+//easyjson:json
+type jsonrpcDNSApplyDNSModelResponse struct {
+	Operation contract.OperationResponse `json:"operation"`
+}

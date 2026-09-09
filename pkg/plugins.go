@@ -12,6 +12,7 @@ import (
 
 	"go.arwos.org/atlas/pkg/database"
 	"go.arwos.org/atlas/pkg/dhcp"
+	"go.arwos.org/atlas/pkg/dns"
 )
 
 // Plugins registers the Atlas domain services and configuration.
@@ -21,5 +22,9 @@ var Plugins = plugin.Inject(
 	plugin.Kind{
 		Config: &dhcp.ConfigGroup{},
 		Inject: dhcp.NewService,
+	},
+	plugin.Kind{
+		Config: &dns.ConfigGroup{},
+		Inject: dns.NewService,
 	},
 )

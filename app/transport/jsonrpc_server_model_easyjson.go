@@ -20,7 +20,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport(in *jlexer.Lexer, out *jsonrpcDHCPSubnetUpsertModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport(in *jlexer.Lexer, out *jsonrpcDNSZoneUpsertModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -46,7 +46,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport(in *jlexer.Lexer, out *js
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport(out *jwriter.Writer, in jsonrpcDHCPSubnetUpsertModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport(out *jwriter.Writer, in jsonrpcDNSZoneUpsertModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -59,26 +59,26 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport(out *jwriter.Writer, in j
 }
 
 // MarshalJSON supports json.Marshaler interface
-func (v jsonrpcDHCPSubnetUpsertModelResponse) MarshalJSON() ([]byte, error) {
+func (v jsonrpcDNSZoneUpsertModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
 	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
-func (v jsonrpcDHCPSubnetUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+func (v jsonrpcDNSZoneUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
 	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
-func (v *jsonrpcDHCPSubnetUpsertModelResponse) UnmarshalJSON(data []byte) error {
+func (v *jsonrpcDNSZoneUpsertModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
 	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
-func (v *jsonrpcDHCPSubnetUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+func (v *jsonrpcDNSZoneUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport(l, v)
 }
 func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in *jlexer.Lexer, out *types.OperationResponse) {
@@ -122,7 +122,2184 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out *jwriter.Writer, in types
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(in *jlexer.Lexer, out *jsonrpcDHCPSubnetUpsertModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(in *jlexer.Lexer, out *jsonrpcDNSZoneUpsertModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "zone":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in, &out.Zone)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(out *jwriter.Writer, in jsonrpcDNSZoneUpsertModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"zone\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out, in.Zone)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSZoneUpsertModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSZoneUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSZoneUpsertModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSZoneUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in *jlexer.Lexer, out *types.DNSZoneUpsertRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Name = string(in.String())
+			}
+		case "primary_ns":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.PrimaryNS = string(in.String())
+			}
+		case "admin_email":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.AdminEmail = string(in.String())
+			}
+		case "ttl":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.TTL = uint32(in.Uint32())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out *jwriter.Writer, in types.DNSZoneUpsertRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.ID != 0 {
+		const prefix string = ",\"id\":"
+		first = false
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	{
+		const prefix string = ",\"name\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Name))
+	}
+	{
+		const prefix string = ",\"primary_ns\":"
+		out.RawString(prefix)
+		out.String(string(in.PrimaryNS))
+	}
+	{
+		const prefix string = ",\"admin_email\":"
+		out.RawString(prefix)
+		out.String(string(in.AdminEmail))
+	}
+	if in.TTL != 0 {
+		const prefix string = ",\"ttl\":"
+		out.RawString(prefix)
+		out.Uint32(uint32(in.TTL))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(in *jlexer.Lexer, out *jsonrpcDNSZoneDeleteModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(out *jwriter.Writer, in jsonrpcDNSZoneDeleteModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSZoneDeleteModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSZoneDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSZoneDeleteModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSZoneDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(in *jlexer.Lexer, out *jsonrpcDNSZoneDeleteModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Id = int64(in.Int64())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(out *jwriter.Writer, in jsonrpcDNSZoneDeleteModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.Id))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSZoneDeleteModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSZoneDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSZoneDeleteModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSZoneDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(in *jlexer.Lexer, out *jsonrpcDNSRecordUpsertModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(out *jwriter.Writer, in jsonrpcDNSRecordUpsertModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSRecordUpsertModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSRecordUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSRecordUpsertModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSRecordUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(in *jlexer.Lexer, out *jsonrpcDNSRecordUpsertModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "record":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes2(in, &out.Record)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(out *jwriter.Writer, in jsonrpcDNSRecordUpsertModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"record\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes2(out, in.Record)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSRecordUpsertModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSRecordUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSRecordUpsertModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSRecordUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes2(in *jlexer.Lexer, out *types.DNSRecordUpsertRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "zone_id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ZoneID = int64(in.Int64())
+			}
+		case "name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Name = string(in.String())
+			}
+		case "type":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Type = string(in.String())
+			}
+		case "value":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Value = string(in.String())
+			}
+		case "ttl":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.TTL = uint32(in.Uint32())
+			}
+		case "priority":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Priority = uint16(in.Uint16())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes2(out *jwriter.Writer, in types.DNSRecordUpsertRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.ID != 0 {
+		const prefix string = ",\"id\":"
+		first = false
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	{
+		const prefix string = ",\"zone_id\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int64(int64(in.ZoneID))
+	}
+	{
+		const prefix string = ",\"name\":"
+		out.RawString(prefix)
+		out.String(string(in.Name))
+	}
+	{
+		const prefix string = ",\"type\":"
+		out.RawString(prefix)
+		out.String(string(in.Type))
+	}
+	{
+		const prefix string = ",\"value\":"
+		out.RawString(prefix)
+		out.String(string(in.Value))
+	}
+	if in.TTL != 0 {
+		const prefix string = ",\"ttl\":"
+		out.RawString(prefix)
+		out.Uint32(uint32(in.TTL))
+	}
+	if in.Priority != 0 {
+		const prefix string = ",\"priority\":"
+		out.RawString(prefix)
+		out.Uint16(uint16(in.Priority))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(in *jlexer.Lexer, out *jsonrpcDNSRecordDeleteModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(out *jwriter.Writer, in jsonrpcDNSRecordDeleteModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSRecordDeleteModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSRecordDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSRecordDeleteModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSRecordDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(in *jlexer.Lexer, out *jsonrpcDNSRecordDeleteModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Id = int64(in.Int64())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(out *jwriter.Writer, in jsonrpcDNSRecordDeleteModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.Id))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSRecordDeleteModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSRecordDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSRecordDeleteModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSRecordDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(in *jlexer.Lexer, out *jsonrpcDNSForwarderUpsertModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(out *jwriter.Writer, in jsonrpcDNSForwarderUpsertModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSForwarderUpsertModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSForwarderUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSForwarderUpsertModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSForwarderUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(in *jlexer.Lexer, out *jsonrpcDNSForwarderUpsertModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "forwarder":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes3(in, &out.Forwarder)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(out *jwriter.Writer, in jsonrpcDNSForwarderUpsertModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"forwarder\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes3(out, in.Forwarder)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSForwarderUpsertModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSForwarderUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSForwarderUpsertModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSForwarderUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes3(in *jlexer.Lexer, out *types.DNSForwarderUpsertRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "zone_name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ZoneName = string(in.String())
+			}
+		case "address":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Address = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes3(out *jwriter.Writer, in types.DNSForwarderUpsertRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.ID != 0 {
+		const prefix string = ",\"id\":"
+		first = false
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	if in.ZoneName != "" {
+		const prefix string = ",\"zone_name\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.ZoneName))
+	}
+	{
+		const prefix string = ",\"address\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Address))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(in *jlexer.Lexer, out *jsonrpcDNSForwarderDeleteModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(out *jwriter.Writer, in jsonrpcDNSForwarderDeleteModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSForwarderDeleteModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSForwarderDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSForwarderDeleteModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSForwarderDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(in *jlexer.Lexer, out *jsonrpcDNSForwarderDeleteModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Id = int64(in.Int64())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(out *jwriter.Writer, in jsonrpcDNSForwarderDeleteModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.Id))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSForwarderDeleteModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSForwarderDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSForwarderDeleteModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSForwarderDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(in *jlexer.Lexer, out *jsonrpcDNSDraftGetDNSModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "configuration":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in, &out.Configuration)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(out *jwriter.Writer, in jsonrpcDNSDraftGetDNSModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"configuration\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out, in.Configuration)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSDraftGetDNSModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSDraftGetDNSModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSDraftGetDNSModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSDraftGetDNSModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in *jlexer.Lexer, out *types.DNSConfigurationResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "zones":
+			if in.IsNull() {
+				in.Skip()
+				out.Zones = nil
+			} else {
+				in.Delim('[')
+				if out.Zones == nil {
+					if !in.IsDelim(']') {
+						out.Zones = make([]types.DNSZoneResponse, 0, 1)
+					} else {
+						out.Zones = []types.DNSZoneResponse{}
+					}
+				} else {
+					out.Zones = (out.Zones)[:0]
+				}
+				for !in.IsDelim(']') {
+					var v1 types.DNSZoneResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in, &v1)
+					out.Zones = append(out.Zones, v1)
+					in.WantComma()
+				}
+				in.Delim(']')
+			}
+		case "records":
+			if in.IsNull() {
+				in.Skip()
+				out.Records = nil
+			} else {
+				in.Delim('[')
+				if out.Records == nil {
+					if !in.IsDelim(']') {
+						out.Records = make([]types.DNSRecordResponse, 0, 0)
+					} else {
+						out.Records = []types.DNSRecordResponse{}
+					}
+				} else {
+					out.Records = (out.Records)[:0]
+				}
+				for !in.IsDelim(']') {
+					var v2 types.DNSRecordResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes6(in, &v2)
+					out.Records = append(out.Records, v2)
+					in.WantComma()
+				}
+				in.Delim(']')
+			}
+		case "forwarders":
+			if in.IsNull() {
+				in.Skip()
+				out.Forwarders = nil
+			} else {
+				in.Delim('[')
+				if out.Forwarders == nil {
+					if !in.IsDelim(']') {
+						out.Forwarders = make([]types.DNSForwarderResponse, 0, 1)
+					} else {
+						out.Forwarders = []types.DNSForwarderResponse{}
+					}
+				} else {
+					out.Forwarders = (out.Forwarders)[:0]
+				}
+				for !in.IsDelim(']') {
+					var v3 types.DNSForwarderResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes7(in, &v3)
+					out.Forwarders = append(out.Forwarders, v3)
+					in.WantComma()
+				}
+				in.Delim(']')
+			}
+		case "blocks":
+			if in.IsNull() {
+				in.Skip()
+				out.Blocks = nil
+			} else {
+				in.Delim('[')
+				if out.Blocks == nil {
+					if !in.IsDelim(']') {
+						out.Blocks = make([]types.DNSBlockResponse, 0, 2)
+					} else {
+						out.Blocks = []types.DNSBlockResponse{}
+					}
+				} else {
+					out.Blocks = (out.Blocks)[:0]
+				}
+				for !in.IsDelim(']') {
+					var v4 types.DNSBlockResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes8(in, &v4)
+					out.Blocks = append(out.Blocks, v4)
+					in.WantComma()
+				}
+				in.Delim(']')
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out *jwriter.Writer, in types.DNSConfigurationResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"zones\":"
+		out.RawString(prefix[1:])
+		if in.Zones == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
+		} else {
+			out.RawByte('[')
+			for v5, v6 := range in.Zones {
+				if v5 > 0 {
+					out.RawByte(',')
+				}
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out, v6)
+			}
+			out.RawByte(']')
+		}
+	}
+	{
+		const prefix string = ",\"records\":"
+		out.RawString(prefix)
+		if in.Records == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
+		} else {
+			out.RawByte('[')
+			for v7, v8 := range in.Records {
+				if v7 > 0 {
+					out.RawByte(',')
+				}
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes6(out, v8)
+			}
+			out.RawByte(']')
+		}
+	}
+	{
+		const prefix string = ",\"forwarders\":"
+		out.RawString(prefix)
+		if in.Forwarders == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
+		} else {
+			out.RawByte('[')
+			for v9, v10 := range in.Forwarders {
+				if v9 > 0 {
+					out.RawByte(',')
+				}
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes7(out, v10)
+			}
+			out.RawByte(']')
+		}
+	}
+	{
+		const prefix string = ",\"blocks\":"
+		out.RawString(prefix)
+		if in.Blocks == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
+		} else {
+			out.RawByte('[')
+			for v11, v12 := range in.Blocks {
+				if v11 > 0 {
+					out.RawByte(',')
+				}
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes8(out, v12)
+			}
+			out.RawByte(']')
+		}
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes8(in *jlexer.Lexer, out *types.DNSBlockResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Name = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes8(out *jwriter.Writer, in types.DNSBlockResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	{
+		const prefix string = ",\"name\":"
+		out.RawString(prefix)
+		out.String(string(in.Name))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes7(in *jlexer.Lexer, out *types.DNSForwarderResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "zone_name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ZoneName = string(in.String())
+			}
+		case "address":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Address = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes7(out *jwriter.Writer, in types.DNSForwarderResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	if in.ZoneName != "" {
+		const prefix string = ",\"zone_name\":"
+		out.RawString(prefix)
+		out.String(string(in.ZoneName))
+	}
+	{
+		const prefix string = ",\"address\":"
+		out.RawString(prefix)
+		out.String(string(in.Address))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes6(in *jlexer.Lexer, out *types.DNSRecordResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "zone_id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ZoneID = int64(in.Int64())
+			}
+		case "name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Name = string(in.String())
+			}
+		case "type":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Type = string(in.String())
+			}
+		case "value":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Value = string(in.String())
+			}
+		case "ttl":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.TTL = uint32(in.Uint32())
+			}
+		case "priority":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Priority = uint16(in.Uint16())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes6(out *jwriter.Writer, in types.DNSRecordResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	{
+		const prefix string = ",\"zone_id\":"
+		out.RawString(prefix)
+		out.Int64(int64(in.ZoneID))
+	}
+	{
+		const prefix string = ",\"name\":"
+		out.RawString(prefix)
+		out.String(string(in.Name))
+	}
+	{
+		const prefix string = ",\"type\":"
+		out.RawString(prefix)
+		out.String(string(in.Type))
+	}
+	{
+		const prefix string = ",\"value\":"
+		out.RawString(prefix)
+		out.String(string(in.Value))
+	}
+	{
+		const prefix string = ",\"ttl\":"
+		out.RawString(prefix)
+		out.Uint32(uint32(in.TTL))
+	}
+	if in.Priority != 0 {
+		const prefix string = ",\"priority\":"
+		out.RawString(prefix)
+		out.Uint16(uint16(in.Priority))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in *jlexer.Lexer, out *types.DNSZoneResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Name = string(in.String())
+			}
+		case "primary_ns":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.PrimaryNS = string(in.String())
+			}
+		case "admin_email":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.AdminEmail = string(in.String())
+			}
+		case "ttl":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.TTL = uint32(in.Uint32())
+			}
+		case "serial":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Serial = uint32(in.Uint32())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out *jwriter.Writer, in types.DNSZoneResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	{
+		const prefix string = ",\"name\":"
+		out.RawString(prefix)
+		out.String(string(in.Name))
+	}
+	{
+		const prefix string = ",\"primary_ns\":"
+		out.RawString(prefix)
+		out.String(string(in.PrimaryNS))
+	}
+	{
+		const prefix string = ",\"admin_email\":"
+		out.RawString(prefix)
+		out.String(string(in.AdminEmail))
+	}
+	{
+		const prefix string = ",\"ttl\":"
+		out.RawString(prefix)
+		out.Uint32(uint32(in.TTL))
+	}
+	{
+		const prefix string = ",\"serial\":"
+		out.RawString(prefix)
+		out.Uint32(uint32(in.Serial))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(in *jlexer.Lexer, out *jsonrpcDNSDraftGetDNSModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(out *jwriter.Writer, in jsonrpcDNSDraftGetDNSModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSDraftGetDNSModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSDraftGetDNSModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSDraftGetDNSModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSDraftGetDNSModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(in *jlexer.Lexer, out *jsonrpcDNSDNSBlockUpsertModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(out *jwriter.Writer, in jsonrpcDNSDNSBlockUpsertModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSDNSBlockUpsertModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSDNSBlockUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockUpsertModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(in *jlexer.Lexer, out *jsonrpcDNSDNSBlockUpsertModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "block":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes9(in, &out.Block)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(out *jwriter.Writer, in jsonrpcDNSDNSBlockUpsertModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"block\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes9(out, in.Block)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSDNSBlockUpsertModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSDNSBlockUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockUpsertModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes9(in *jlexer.Lexer, out *types.DNSBlockUpsertRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.ID = int64(in.Int64())
+			}
+		case "name":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Name = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes9(out *jwriter.Writer, in types.DNSBlockUpsertRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.ID != 0 {
+		const prefix string = ",\"id\":"
+		first = false
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.ID))
+	}
+	{
+		const prefix string = ",\"name\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Name))
+	}
+	out.RawByte('}')
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(in *jlexer.Lexer, out *jsonrpcDNSDNSBlockDeleteModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(out *jwriter.Writer, in jsonrpcDNSDNSBlockDeleteModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSDNSBlockDeleteModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSDNSBlockDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockDeleteModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(in *jlexer.Lexer, out *jsonrpcDNSDNSBlockDeleteModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "id":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.Id = int64(in.Int64())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(out *jwriter.Writer, in jsonrpcDNSDNSBlockDeleteModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int64(int64(in.Id))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSDNSBlockDeleteModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSDNSBlockDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockDeleteModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSDNSBlockDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(in *jlexer.Lexer, out *jsonrpcDNSApplyDNSModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(out *jwriter.Writer, in jsonrpcDNSApplyDNSModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSApplyDNSModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSApplyDNSModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSApplyDNSModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSApplyDNSModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(in *jlexer.Lexer, out *jsonrpcDNSApplyDNSModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(out *jwriter.Writer, in jsonrpcDNSApplyDNSModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSApplyDNSModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSApplyDNSModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSApplyDNSModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSApplyDNSModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(in *jlexer.Lexer, out *jsonrpcDNSActiveGetDNSModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "configuration":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in, &out.Configuration)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(out *jwriter.Writer, in jsonrpcDNSActiveGetDNSModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"configuration\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out, in.Configuration)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSActiveGetDNSModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSActiveGetDNSModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSActiveGetDNSModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSActiveGetDNSModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(in *jlexer.Lexer, out *jsonrpcDNSActiveGetDNSModelRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(out *jwriter.Writer, in jsonrpcDNSActiveGetDNSModelRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDNSActiveGetDNSModelRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDNSActiveGetDNSModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDNSActiveGetDNSModelRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDNSActiveGetDNSModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport22(in *jlexer.Lexer, out *jsonrpcDHCPSubnetUpsertModelResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		switch key {
+		case "operation":
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes(in, &out.Operation)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport22(out *jwriter.Writer, in jsonrpcDHCPSubnetUpsertModelResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"operation\":"
+		out.RawString(prefix[1:])
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes(out, in.Operation)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v jsonrpcDHCPSubnetUpsertModelResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport22(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v jsonrpcDHCPSubnetUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport22(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *jsonrpcDHCPSubnetUpsertModelResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport22(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *jsonrpcDHCPSubnetUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport22(l, v)
+}
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport23(in *jlexer.Lexer, out *jsonrpcDHCPSubnetUpsertModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -137,7 +2314,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(in *jlexer.Lexer, out *j
 		in.WantColon()
 		switch key {
 		case "subnet":
-			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in, &out.Subnet)
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes10(in, &out.Subnet)
 		default:
 			in.SkipRecursive()
 		}
@@ -148,14 +2325,14 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(out *jwriter.Writer, in jsonrpcDHCPSubnetUpsertModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport23(out *jwriter.Writer, in jsonrpcDHCPSubnetUpsertModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	{
 		const prefix string = ",\"subnet\":"
 		out.RawString(prefix[1:])
-		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out, in.Subnet)
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes10(out, in.Subnet)
 	}
 	out.RawByte('}')
 }
@@ -163,27 +2340,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPSubnetUpsertModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport23(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPSubnetUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport1(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport23(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPSubnetUpsertModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport23(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPSubnetUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport1(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport23(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in *jlexer.Lexer, out *types.DHCPSubnetUpsertRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes10(in *jlexer.Lexer, out *types.DHCPSubnetUpsertRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -243,13 +2420,13 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in *jlexer.Lexer, out *types
 					out.DNSServers = (out.DNSServers)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v1 string
+					var v13 string
 					if in.IsNull() {
 						in.Skip()
 					} else {
-						v1 = string(in.String())
+						v13 = string(in.String())
 					}
-					out.DNSServers = append(out.DNSServers, v1)
+					out.DNSServers = append(out.DNSServers, v13)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -276,13 +2453,13 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in *jlexer.Lexer, out *types
 					out.NTPServers = (out.NTPServers)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v2 string
+					var v14 string
 					if in.IsNull() {
 						in.Skip()
 					} else {
-						v2 = string(in.String())
+						v14 = string(in.String())
 					}
-					out.NTPServers = append(out.NTPServers, v2)
+					out.NTPServers = append(out.NTPServers, v14)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -309,13 +2486,13 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in *jlexer.Lexer, out *types
 					out.ClasslessRoutes = (out.ClasslessRoutes)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v3 string
+					var v15 string
 					if in.IsNull() {
 						in.Skip()
 					} else {
-						v3 = string(in.String())
+						v15 = string(in.String())
 					}
-					out.ClasslessRoutes = append(out.ClasslessRoutes, v3)
+					out.ClasslessRoutes = append(out.ClasslessRoutes, v15)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -330,7 +2507,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes1(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out *jwriter.Writer, in types.DHCPSubnetUpsertRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes10(out *jwriter.Writer, in types.DHCPSubnetUpsertRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -370,11 +2547,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out *jwriter.Writer, in type
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v4, v5 := range in.DNSServers {
-				if v4 > 0 {
+			for v16, v17 := range in.DNSServers {
+				if v16 > 0 {
 					out.RawByte(',')
 				}
-				out.String(string(v5))
+				out.String(string(v17))
 			}
 			out.RawByte(']')
 		}
@@ -389,11 +2566,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out *jwriter.Writer, in type
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v6, v7 := range in.NTPServers {
-				if v6 > 0 {
+			for v18, v19 := range in.NTPServers {
+				if v18 > 0 {
 					out.RawByte(',')
 				}
-				out.String(string(v7))
+				out.String(string(v19))
 			}
 			out.RawByte(']')
 		}
@@ -408,18 +2585,18 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes1(out *jwriter.Writer, in type
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v8, v9 := range in.ClasslessRoutes {
-				if v8 > 0 {
+			for v20, v21 := range in.ClasslessRoutes {
+				if v20 > 0 {
 					out.RawByte(',')
 				}
-				out.String(string(v9))
+				out.String(string(v21))
 			}
 			out.RawByte(']')
 		}
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(in *jlexer.Lexer, out *jsonrpcDHCPSubnetDeleteModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport24(in *jlexer.Lexer, out *jsonrpcDHCPSubnetDeleteModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -445,7 +2622,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(out *jwriter.Writer, in jsonrpcDHCPSubnetDeleteModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport24(out *jwriter.Writer, in jsonrpcDHCPSubnetDeleteModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -460,27 +2637,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPSubnetDeleteModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport24(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPSubnetDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport2(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport24(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPSubnetDeleteModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport24(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPSubnetDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport2(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport24(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(in *jlexer.Lexer, out *jsonrpcDHCPSubnetDeleteModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport25(in *jlexer.Lexer, out *jsonrpcDHCPSubnetDeleteModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -510,7 +2687,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(out *jwriter.Writer, in jsonrpcDHCPSubnetDeleteModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport25(out *jwriter.Writer, in jsonrpcDHCPSubnetDeleteModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -525,27 +2702,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPSubnetDeleteModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport25(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPSubnetDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport3(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport25(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPSubnetDeleteModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport25(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPSubnetDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport3(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport25(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(in *jlexer.Lexer, out *jsonrpcDHCPReservationUpsertModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport26(in *jlexer.Lexer, out *jsonrpcDHCPReservationUpsertModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -571,7 +2748,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(out *jwriter.Writer, in jsonrpcDHCPReservationUpsertModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport26(out *jwriter.Writer, in jsonrpcDHCPReservationUpsertModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -586,27 +2763,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPReservationUpsertModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport26(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPReservationUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport4(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport26(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPReservationUpsertModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport26(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPReservationUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport4(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport26(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(in *jlexer.Lexer, out *jsonrpcDHCPReservationUpsertModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport27(in *jlexer.Lexer, out *jsonrpcDHCPReservationUpsertModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -621,7 +2798,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(in *jlexer.Lexer, out *j
 		in.WantColon()
 		switch key {
 		case "reservation":
-			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes2(in, &out.Reservation)
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes11(in, &out.Reservation)
 		default:
 			in.SkipRecursive()
 		}
@@ -632,14 +2809,14 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(out *jwriter.Writer, in jsonrpcDHCPReservationUpsertModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport27(out *jwriter.Writer, in jsonrpcDHCPReservationUpsertModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	{
 		const prefix string = ",\"reservation\":"
 		out.RawString(prefix[1:])
-		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes2(out, in.Reservation)
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes11(out, in.Reservation)
 	}
 	out.RawByte('}')
 }
@@ -647,27 +2824,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPReservationUpsertModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport27(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPReservationUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport5(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport27(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPReservationUpsertModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport27(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPReservationUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport5(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport27(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes2(in *jlexer.Lexer, out *types.DHCPReservationUpsertRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes11(in *jlexer.Lexer, out *types.DHCPReservationUpsertRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -715,7 +2892,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes2(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes2(out *jwriter.Writer, in types.DHCPReservationUpsertRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes11(out *jwriter.Writer, in types.DHCPReservationUpsertRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -747,7 +2924,7 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes2(out *jwriter.Writer, in type
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(in *jlexer.Lexer, out *jsonrpcDHCPReservationDeleteModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport28(in *jlexer.Lexer, out *jsonrpcDHCPReservationDeleteModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -773,7 +2950,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(out *jwriter.Writer, in jsonrpcDHCPReservationDeleteModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport28(out *jwriter.Writer, in jsonrpcDHCPReservationDeleteModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -788,27 +2965,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPReservationDeleteModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport28(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPReservationDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport6(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport28(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPReservationDeleteModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport28(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPReservationDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport6(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport28(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(in *jlexer.Lexer, out *jsonrpcDHCPReservationDeleteModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport29(in *jlexer.Lexer, out *jsonrpcDHCPReservationDeleteModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -838,7 +3015,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(out *jwriter.Writer, in jsonrpcDHCPReservationDeleteModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport29(out *jwriter.Writer, in jsonrpcDHCPReservationDeleteModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -853,27 +3030,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPReservationDeleteModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport29(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPReservationDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport7(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport29(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPReservationDeleteModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport29(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPReservationDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport7(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport29(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(in *jlexer.Lexer, out *jsonrpcDHCPLeaseRevokeModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport30(in *jlexer.Lexer, out *jsonrpcDHCPLeaseRevokeModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -899,7 +3076,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(out *jwriter.Writer, in jsonrpcDHCPLeaseRevokeModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport30(out *jwriter.Writer, in jsonrpcDHCPLeaseRevokeModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -914,27 +3091,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPLeaseRevokeModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport30(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPLeaseRevokeModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport8(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport30(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseRevokeModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport30(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseRevokeModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport8(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport30(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(in *jlexer.Lexer, out *jsonrpcDHCPLeaseRevokeModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport31(in *jlexer.Lexer, out *jsonrpcDHCPLeaseRevokeModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -964,7 +3141,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(in *jlexer.Lexer, out *j
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(out *jwriter.Writer, in jsonrpcDHCPLeaseRevokeModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport31(out *jwriter.Writer, in jsonrpcDHCPLeaseRevokeModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -979,27 +3156,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(out *jwriter.Writer, in 
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPLeaseRevokeModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport31(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPLeaseRevokeModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport9(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport31(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseRevokeModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport31(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseRevokeModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport9(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport31(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(in *jlexer.Lexer, out *jsonrpcDHCPLeaseListModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport32(in *jlexer.Lexer, out *jsonrpcDHCPLeaseListModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1029,9 +3206,9 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(in *jlexer.Lexer, out *
 					out.Leases = (out.Leases)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v10 types.DHCPLeaseResponse
-					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes3(in, &v10)
-					out.Leases = append(out.Leases, v10)
+					var v22 types.DHCPLeaseResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes12(in, &v22)
+					out.Leases = append(out.Leases, v22)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1046,7 +3223,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(out *jwriter.Writer, in jsonrpcDHCPLeaseListModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport32(out *jwriter.Writer, in jsonrpcDHCPLeaseListModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1056,11 +3233,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(out *jwriter.Writer, in
 		out.RawString(prefix[1:])
 		{
 			out.RawByte('[')
-			for v11, v12 := range in.Leases {
-				if v11 > 0 {
+			for v23, v24 := range in.Leases {
+				if v23 > 0 {
 					out.RawByte(',')
 				}
-				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes3(out, v12)
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes12(out, v24)
 			}
 			out.RawByte(']')
 		}
@@ -1071,27 +3248,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPLeaseListModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport32(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPLeaseListModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport10(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport32(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseListModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport32(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseListModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport10(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport32(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes3(in *jlexer.Lexer, out *types.DHCPLeaseResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes12(in *jlexer.Lexer, out *types.DHCPLeaseResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1147,7 +3324,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes3(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes3(out *jwriter.Writer, in types.DHCPLeaseResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes12(out *jwriter.Writer, in types.DHCPLeaseResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1178,7 +3355,7 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes3(out *jwriter.Writer, in type
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(in *jlexer.Lexer, out *jsonrpcDHCPLeaseListModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport33(in *jlexer.Lexer, out *jsonrpcDHCPLeaseListModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1202,7 +3379,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(out *jwriter.Writer, in jsonrpcDHCPLeaseListModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport33(out *jwriter.Writer, in jsonrpcDHCPLeaseListModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1212,27 +3389,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPLeaseListModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport33(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPLeaseListModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport11(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport33(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseListModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport33(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPLeaseListModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport11(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport33(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(in *jlexer.Lexer, out *jsonrpcDHCPDraftGetModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport34(in *jlexer.Lexer, out *jsonrpcDHCPDraftGetModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1247,7 +3424,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(in *jlexer.Lexer, out *
 		in.WantColon()
 		switch key {
 		case "configuration":
-			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in, &out.Configuration)
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes13(in, &out.Configuration)
 		default:
 			in.SkipRecursive()
 		}
@@ -1258,14 +3435,14 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(out *jwriter.Writer, in jsonrpcDHCPDraftGetModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport34(out *jwriter.Writer, in jsonrpcDHCPDraftGetModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	{
 		const prefix string = ",\"configuration\":"
 		out.RawString(prefix[1:])
-		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out, in.Configuration)
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes13(out, in.Configuration)
 	}
 	out.RawByte('}')
 }
@@ -1273,27 +3450,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPDraftGetModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport34(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPDraftGetModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport12(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport34(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPDraftGetModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport34(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPDraftGetModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport12(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport34(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in *jlexer.Lexer, out *types.DHCPConfigurationResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes13(in *jlexer.Lexer, out *types.DHCPConfigurationResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1323,9 +3500,9 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in *jlexer.Lexer, out *types
 					out.Subnets = (out.Subnets)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v13 types.DHCPSubnetResponse
-					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in, &v13)
-					out.Subnets = append(out.Subnets, v13)
+					var v25 types.DHCPSubnetResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes14(in, &v25)
+					out.Subnets = append(out.Subnets, v25)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1346,9 +3523,9 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in *jlexer.Lexer, out *types
 					out.Reservations = (out.Reservations)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v14 types.DHCPReservationResponse
-					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes6(in, &v14)
-					out.Reservations = append(out.Reservations, v14)
+					var v26 types.DHCPReservationResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes15(in, &v26)
+					out.Reservations = append(out.Reservations, v26)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1369,9 +3546,9 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in *jlexer.Lexer, out *types
 					out.Blocks = (out.Blocks)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v15 types.DHCPBlockResponse
-					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes7(in, &v15)
-					out.Blocks = append(out.Blocks, v15)
+					var v27 types.DHCPBlockResponse
+					easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes16(in, &v27)
+					out.Blocks = append(out.Blocks, v27)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1386,7 +3563,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out *jwriter.Writer, in types.DHCPConfigurationResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes13(out *jwriter.Writer, in types.DHCPConfigurationResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1397,11 +3574,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out *jwriter.Writer, in type
 			out.RawString("null")
 		} else {
 			out.RawByte('[')
-			for v16, v17 := range in.Subnets {
-				if v16 > 0 {
+			for v28, v29 := range in.Subnets {
+				if v28 > 0 {
 					out.RawByte(',')
 				}
-				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out, v17)
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes14(out, v29)
 			}
 			out.RawByte(']')
 		}
@@ -1413,11 +3590,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out *jwriter.Writer, in type
 			out.RawString("null")
 		} else {
 			out.RawByte('[')
-			for v18, v19 := range in.Reservations {
-				if v18 > 0 {
+			for v30, v31 := range in.Reservations {
+				if v30 > 0 {
 					out.RawByte(',')
 				}
-				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes6(out, v19)
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes15(out, v31)
 			}
 			out.RawByte(']')
 		}
@@ -1429,18 +3606,18 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out *jwriter.Writer, in type
 			out.RawString("null")
 		} else {
 			out.RawByte('[')
-			for v20, v21 := range in.Blocks {
-				if v20 > 0 {
+			for v32, v33 := range in.Blocks {
+				if v32 > 0 {
 					out.RawByte(',')
 				}
-				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes7(out, v21)
+				easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes16(out, v33)
 			}
 			out.RawByte(']')
 		}
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes7(in *jlexer.Lexer, out *types.DHCPBlockResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes16(in *jlexer.Lexer, out *types.DHCPBlockResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1476,7 +3653,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes7(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes7(out *jwriter.Writer, in types.DHCPBlockResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes16(out *jwriter.Writer, in types.DHCPBlockResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1492,7 +3669,7 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes7(out *jwriter.Writer, in type
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes6(in *jlexer.Lexer, out *types.DHCPReservationResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes15(in *jlexer.Lexer, out *types.DHCPReservationResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1540,7 +3717,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes6(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes6(out *jwriter.Writer, in types.DHCPReservationResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes15(out *jwriter.Writer, in types.DHCPReservationResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1566,7 +3743,7 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes6(out *jwriter.Writer, in type
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in *jlexer.Lexer, out *types.DHCPSubnetResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes14(in *jlexer.Lexer, out *types.DHCPSubnetResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1626,13 +3803,13 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in *jlexer.Lexer, out *types
 					out.DNSServers = (out.DNSServers)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v22 string
+					var v34 string
 					if in.IsNull() {
 						in.Skip()
 					} else {
-						v22 = string(in.String())
+						v34 = string(in.String())
 					}
-					out.DNSServers = append(out.DNSServers, v22)
+					out.DNSServers = append(out.DNSServers, v34)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1659,13 +3836,13 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in *jlexer.Lexer, out *types
 					out.NTPServers = (out.NTPServers)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v23 string
+					var v35 string
 					if in.IsNull() {
 						in.Skip()
 					} else {
-						v23 = string(in.String())
+						v35 = string(in.String())
 					}
-					out.NTPServers = append(out.NTPServers, v23)
+					out.NTPServers = append(out.NTPServers, v35)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1692,13 +3869,13 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in *jlexer.Lexer, out *types
 					out.ClasslessRoutes = (out.ClasslessRoutes)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v24 string
+					var v36 string
 					if in.IsNull() {
 						in.Skip()
 					} else {
-						v24 = string(in.String())
+						v36 = string(in.String())
 					}
-					out.ClasslessRoutes = append(out.ClasslessRoutes, v24)
+					out.ClasslessRoutes = append(out.ClasslessRoutes, v36)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1713,7 +3890,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes5(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out *jwriter.Writer, in types.DHCPSubnetResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes14(out *jwriter.Writer, in types.DHCPSubnetResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1747,11 +3924,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out *jwriter.Writer, in type
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v25, v26 := range in.DNSServers {
-				if v25 > 0 {
+			for v37, v38 := range in.DNSServers {
+				if v37 > 0 {
 					out.RawByte(',')
 				}
-				out.String(string(v26))
+				out.String(string(v38))
 			}
 			out.RawByte(']')
 		}
@@ -1766,11 +3943,11 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out *jwriter.Writer, in type
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v27, v28 := range in.NTPServers {
-				if v27 > 0 {
+			for v39, v40 := range in.NTPServers {
+				if v39 > 0 {
 					out.RawByte(',')
 				}
-				out.String(string(v28))
+				out.String(string(v40))
 			}
 			out.RawByte(']')
 		}
@@ -1785,18 +3962,18 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes5(out *jwriter.Writer, in type
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v29, v30 := range in.ClasslessRoutes {
-				if v29 > 0 {
+			for v41, v42 := range in.ClasslessRoutes {
+				if v41 > 0 {
 					out.RawByte(',')
 				}
-				out.String(string(v30))
+				out.String(string(v42))
 			}
 			out.RawByte(']')
 		}
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(in *jlexer.Lexer, out *jsonrpcDHCPDraftGetModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport35(in *jlexer.Lexer, out *jsonrpcDHCPDraftGetModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1820,7 +3997,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(out *jwriter.Writer, in jsonrpcDHCPDraftGetModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport35(out *jwriter.Writer, in jsonrpcDHCPDraftGetModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1830,27 +4007,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPDraftGetModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport35(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPDraftGetModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport13(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport35(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPDraftGetModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport35(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPDraftGetModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport13(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport35(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(in *jlexer.Lexer, out *jsonrpcDHCPBlockUpsertModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport36(in *jlexer.Lexer, out *jsonrpcDHCPBlockUpsertModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1876,7 +4053,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(out *jwriter.Writer, in jsonrpcDHCPBlockUpsertModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport36(out *jwriter.Writer, in jsonrpcDHCPBlockUpsertModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -1891,27 +4068,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPBlockUpsertModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport36(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPBlockUpsertModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport14(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport36(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPBlockUpsertModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport36(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPBlockUpsertModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport14(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport36(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(in *jlexer.Lexer, out *jsonrpcDHCPBlockUpsertModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport37(in *jlexer.Lexer, out *jsonrpcDHCPBlockUpsertModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -1926,7 +4103,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(in *jlexer.Lexer, out *
 		in.WantColon()
 		switch key {
 		case "block":
-			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes8(in, &out.Block)
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes17(in, &out.Block)
 		default:
 			in.SkipRecursive()
 		}
@@ -1937,14 +4114,14 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(out *jwriter.Writer, in jsonrpcDHCPBlockUpsertModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport37(out *jwriter.Writer, in jsonrpcDHCPBlockUpsertModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	{
 		const prefix string = ",\"block\":"
 		out.RawString(prefix[1:])
-		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes8(out, in.Block)
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes17(out, in.Block)
 	}
 	out.RawByte('}')
 }
@@ -1952,27 +4129,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPBlockUpsertModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport37(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPBlockUpsertModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport15(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport37(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPBlockUpsertModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport37(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPBlockUpsertModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport15(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport37(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes8(in *jlexer.Lexer, out *types.DHCPBlockUpsertRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes17(in *jlexer.Lexer, out *types.DHCPBlockUpsertRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2008,7 +4185,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes8(in *jlexer.Lexer, out *types
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes8(out *jwriter.Writer, in types.DHCPBlockUpsertRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes17(out *jwriter.Writer, in types.DHCPBlockUpsertRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -2030,7 +4207,7 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes8(out *jwriter.Writer, in type
 	}
 	out.RawByte('}')
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(in *jlexer.Lexer, out *jsonrpcDHCPBlockDeleteModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport38(in *jlexer.Lexer, out *jsonrpcDHCPBlockDeleteModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2056,7 +4233,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(out *jwriter.Writer, in jsonrpcDHCPBlockDeleteModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport38(out *jwriter.Writer, in jsonrpcDHCPBlockDeleteModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -2071,27 +4248,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPBlockDeleteModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport38(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPBlockDeleteModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport16(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport38(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPBlockDeleteModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport38(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPBlockDeleteModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport16(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport38(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(in *jlexer.Lexer, out *jsonrpcDHCPBlockDeleteModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport39(in *jlexer.Lexer, out *jsonrpcDHCPBlockDeleteModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2121,7 +4298,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(out *jwriter.Writer, in jsonrpcDHCPBlockDeleteModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport39(out *jwriter.Writer, in jsonrpcDHCPBlockDeleteModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -2136,27 +4313,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPBlockDeleteModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport39(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPBlockDeleteModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport17(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport39(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPBlockDeleteModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport39(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPBlockDeleteModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport17(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport39(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(in *jlexer.Lexer, out *jsonrpcDHCPApplyModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport40(in *jlexer.Lexer, out *jsonrpcDHCPApplyModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2182,7 +4359,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(out *jwriter.Writer, in jsonrpcDHCPApplyModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport40(out *jwriter.Writer, in jsonrpcDHCPApplyModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -2197,27 +4374,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPApplyModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport40(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPApplyModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport18(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport40(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPApplyModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport40(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPApplyModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport18(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport40(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(in *jlexer.Lexer, out *jsonrpcDHCPApplyModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport41(in *jlexer.Lexer, out *jsonrpcDHCPApplyModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2241,7 +4418,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(out *jwriter.Writer, in jsonrpcDHCPApplyModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport41(out *jwriter.Writer, in jsonrpcDHCPApplyModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -2251,27 +4428,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPApplyModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport41(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPApplyModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport19(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport41(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPApplyModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport41(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPApplyModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport19(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport41(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(in *jlexer.Lexer, out *jsonrpcDHCPActiveGetModelResponse) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport42(in *jlexer.Lexer, out *jsonrpcDHCPActiveGetModelResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2286,7 +4463,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(in *jlexer.Lexer, out *
 		in.WantColon()
 		switch key {
 		case "configuration":
-			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes4(in, &out.Configuration)
+			easyjson3ef10231DecodeGoArwosOrgAtlasAppTypes13(in, &out.Configuration)
 		default:
 			in.SkipRecursive()
 		}
@@ -2297,14 +4474,14 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(out *jwriter.Writer, in jsonrpcDHCPActiveGetModelResponse) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport42(out *jwriter.Writer, in jsonrpcDHCPActiveGetModelResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	{
 		const prefix string = ",\"configuration\":"
 		out.RawString(prefix[1:])
-		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes4(out, in.Configuration)
+		easyjson3ef10231EncodeGoArwosOrgAtlasAppTypes13(out, in.Configuration)
 	}
 	out.RawByte('}')
 }
@@ -2312,27 +4489,27 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPActiveGetModelResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport42(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPActiveGetModelResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport20(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport42(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPActiveGetModelResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport42(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPActiveGetModelResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport20(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport42(l, v)
 }
-func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(in *jlexer.Lexer, out *jsonrpcDHCPActiveGetModelRequest) {
+func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport43(in *jlexer.Lexer, out *jsonrpcDHCPActiveGetModelRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -2356,7 +4533,7 @@ func easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(in *jlexer.Lexer, out *
 		in.Consumed()
 	}
 }
-func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(out *jwriter.Writer, in jsonrpcDHCPActiveGetModelRequest) {
+func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport43(out *jwriter.Writer, in jsonrpcDHCPActiveGetModelRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -2366,23 +4543,23 @@ func easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(out *jwriter.Writer, in
 // MarshalJSON supports json.Marshaler interface
 func (v jsonrpcDHCPActiveGetModelRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(&w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport43(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v jsonrpcDHCPActiveGetModelRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport21(w, v)
+	easyjson3ef10231EncodeGoArwosOrgAtlasAppTransport43(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *jsonrpcDHCPActiveGetModelRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(&r, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport43(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *jsonrpcDHCPActiveGetModelRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport21(l, v)
+	easyjson3ef10231DecodeGoArwosOrgAtlasAppTransport43(l, v)
 }

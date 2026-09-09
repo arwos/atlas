@@ -21,3 +21,8 @@ dhcp:
         interface: eth0
         cidr: 192.168.50.0/24
         lease_seconds: 3600
+
+dns:
+    listen: ":53"
+    cache_entries: 10000
+    cache_max_ttl: 24h
