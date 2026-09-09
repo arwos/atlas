@@ -16,5 +16,8 @@ import (
 var Plugins = plugin.Inject(
 	database.NewService,
 	orm.WithMigration(database.Migrations()),
-	dhcp.NewService,
+	plugin.Kind{
+		Config: &dhcp.ConfigGroup{},
+		Inject: dhcp.NewService,
+	},
 )

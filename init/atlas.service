@@ -14,6 +14,8 @@ RestartSec=30s
 ExecStart=/usr/bin/atlas --config=/etc/atlas/config.yaml
 KillMode=process
 KillSignal=SIGTERM
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_RAW
+AmbientCapabilities=CAP_NET_BIND_SERVICE CAP_NET_RAW
 
 [Install]
 WantedBy=default.target

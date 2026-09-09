@@ -11,3 +11,13 @@ sqlite:
       journal: WAL
       locking_mode: NORMAL
       other_params: auto_vacuum=incremental&_busy_timeout=10000
+
+http:
+    - tag: main
+      addr: 127.0.0.1:8080
+
+dhcp:
+    bootstrap:
+        interface: eth0
+        cidr: 192.168.50.0/24
+        lease_seconds: 3600

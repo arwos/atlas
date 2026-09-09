@@ -9,6 +9,8 @@ import (
 	"go.osspkg.com/goppy/v3"
 	"go.osspkg.com/goppy/v3/plugins/orm"
 	"go.osspkg.com/goppy/v3/plugins/orm/clients/sqlite"
+	"go.osspkg.com/goppy/v3/plugins/web"
+	"go.osspkg.com/goppy/v3/plugins/web/jsonrpc"
 
 	"go.arwos.org/atlas/pkg"
 )
@@ -20,6 +22,8 @@ func main() {
 
 	svc.Plugins(
 		orm.WithORM(sqlite.Name),
+		web.WithServer(),
+		jsonrpc.WithTransport(),
 	)
 
 	svc.Plugins(pkg.Plugins)
