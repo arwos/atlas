@@ -33,6 +33,27 @@
 - Не заявляй, что DHCPv4 выдаёт адреса, пока не реализованы UDP/67, packet loop,
   allocation и тесты протокола.
 
+## DNS
+
+- Поддерживай разделение DNS-кода: JSON-RPC-контракт и внешние DTO — в
+  `app/types/dns.go`, реализация transport-контракта — в
+  `app/api_dns_service.go`, сгенерированные handlers и модели — в
+  `app/transport`, lifecycle и DNS wire-обработка — в `pkg/dns/service.go`,
+  конфигурация — в `config.go`, SQL — в `repository.go`.
+- Не импортируй Web или JSON-RPC в `pkg/dns`. Публичные context-aware методы
+  `dns.Service` вызываются только адаптером в `app`.
+- Храни доменные и БД-модели DNS в `pkg/dns/entity.go` без JSON-тегов. Не
+  передавай их напрямую через transport: преобразуй в DTO внутри `app`.
+- Изменяй зоны, записи, форвардеры и блок-лист только в draft. DNS-сервер
+  использует active-снимок исключительно после успешного `dns.apply`.
+- Сохраняй порядок разрешения: блок-лист домена и его поддоменов, локальная
+  авторитетная зона, наиболее специфичный зональный форвардер, базовый
+  форвардер. Блокировка отвечает NXDOMAIN; ошибка upstream — SERVFAIL.
+- Не заменяй DNS wire-слой на текущий `goppy/v3/plugins/xdns`: его handler
+  возвращает только resource records и не позволяет сохранить NXDOMAIN,
+  NODATA, SERVFAIL, полный проксируемый ответ или TTL-кэш. Используй
+  `miekg/dns`, пока xdns не получит message-level handler.
+
 ## Миграции
 
 - Добавляй изменения схемы только новым файлом в `pkg/database/migrations` со
